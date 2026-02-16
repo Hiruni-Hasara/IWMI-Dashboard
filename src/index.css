@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #101010;
+  color: #eee;
+}
+
+.layout {
+  display: flex;
+}
+
+.content-area {
+  margin-left: 230px;
+  width: 100%;
+  min-height: 100vh;
+  background: #181818;
+}

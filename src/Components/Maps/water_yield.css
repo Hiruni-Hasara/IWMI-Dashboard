@@ -1,0 +1,67 @@
+/* Dropdown Container Label */
+label {
+    font-size: 16px;
+    color: #e0e8ff;
+    margin-right: 8px;
+}
+
+/* Dropdown Select */
+select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #2e3a5a;
+    background: #0b1220;
+    color: #a5c7ff;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 0 6px rgba(0, 150, 255, 0.2);
+}
+
+select:hover {
+    border-color: #4ea3ff;
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.4);
+}
+
+select:focus {
+    border-color: #4ea3ff;
+    box-shadow: 0 0 12px rgba(0, 150, 255, 0.6);
+}
+
+.leaflet-tooltip {
+    background: rgba(15, 25, 45, 0.85);
+    border: 1px solid #4ea3ff;
+    color: #d6e6ff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 0 12px rgba(78, 163, 255, 0.5);
+    backdrop-filter: blur(6px);
+}
+
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+    border-right-color: #4ea3ff !important;
+    border-left-color: #4ea3ff !important;
+}
+
+.leaflet-popup-content-wrapper {
+    background: #0c1625;
+    color: #d6e6ff;
+    border-radius: 10px;
+    border: 1px solid #4ea3ff;
+    box-shadow: 0 0 15px rgba(78, 163, 255, 0.6);
+    padding: 8px 12px;
+}
+
+.leaflet-popup-content {
+    margin: 8px;
+    font-size: 15px;
+    color: #e4efff;
+}
+
+.leaflet-popup-tip {
+    background: #0c1625;
+    border: 1px solid #4ea3ff;
+}

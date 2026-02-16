@@ -1,0 +1,80 @@
+/* ============================
+   BASIN INSIGHTS – DARK THEME
+   ============================ */
+
+/* SECTION */
+.insights-section {
+  margin-top: -60px;
+  padding: 60px 40px 80px;
+  text-align: center;
+  background: #0b0f19; /* Deep navy black */
+  color: #e8f1ff;
+}
+
+/* HEADING */
+.insights-heading {
+  font-size: 34px;
+  color: #66b3ff; /* Calm blue glow */
+  font-weight: 700;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(100, 180, 255, 0.4);
+}
+
+/* GRID */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* CARD */
+.insight-card {
+  background: rgba(20, 30, 48, 0.75); /* dark glass */
+  padding: 28px 20px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 40, 80, 0.3);
+  border: 1px solid rgba(100, 150, 255, 0.15);
+  transition: 0.35s ease;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+
+.insight-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 22px rgba(50, 140, 255, 0.45);
+  border-color: rgba(120, 180, 255, 0.35);
+}
+
+/* ICONS / IMAGES */
+.insight-card img {
+  width: 70px;
+  height: 70px;
+  max-width: 100%;       /* Never overflow card */
+  margin: 0 auto 15px;   /* Center horizontally */
+  display: block;        /* Ensure proper centering */
+  object-fit: contain;   /* Keep aspect ratio clean */
+  padding: 5px;          /* Small breathing space */
+  filter: drop-shadow(0 0 6px rgba(120, 180, 255, 0.4));
+}
+
+
+/* TITLES */
+.insight-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #9fc9ff;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* VALUES */
+.insight-value {
+  font-size: 20px;
+  color: #66b3ff;
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(100, 150, 255, 0.4);
+}

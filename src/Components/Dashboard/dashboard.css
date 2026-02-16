@@ -1,0 +1,38 @@
+.dashboard-container {
+  padding: 30px;
+  margin-left: 230px;
+}
+
+.cards-row {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  background: #222;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.dashboard-content {
+  display: flex;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.chart-box,
+.map-box {
+  flex: 1;
+  background: #222;
+  padding: 20px;
+  border-radius: 12px;
+}
