@@ -1,10 +1,41 @@
-import { useEffect, useState } from "react";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, Sector } from "recharts";
 import * as XLSX from "xlsx";
+import "../Sections/Sections.css"; // Ensure this path is correct!
+
+// Custom 3D-effect active sector
+const renderActiveShape = (props) => {
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload, value } = props;
+  return (
+    <g>
+      <filter id="dropshadow" height="130%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+        <feOffset dx="2" dy="2" result="offsetblur"/>
+        <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+        <feMerge> <feMergeNode/> <feMergeNode in="SourceGraphic"/> </feMerge>
+      </filter>
+      <text x={cx} y={cy - 10} textAnchor="middle" fill="#f8fafc" style={{ fontSize: '16px', fontWeight: 'bold' }}>
+        {payload.name}
+      </text>
+      <text x={cx} y={cy + 15} textAnchor="middle" fill="#38bdf8" style={{ fontSize: '14px' }}>
+        {`${value.toLocaleString()} km²`}
+      </text>
+      <Sector
+        cx={cx} cy={cy} 
+        innerRadius={innerRadius} 
+        outerRadius={outerRadius + 10} 
+        startAngle={startAngle} 
+        endAngle={endAngle} 
+        fill={fill}
+        style={{ filter: "url(#dropshadow)" }}
+      />
+    </g>
+  );
+};
 
 export default function DonutChart() {
   const [chartData, setChartData] = useState([]);
-  const [total, setTotal] = useState(0); // ⭐ Needed to calculate percentages
+  const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     fetch("/data.xlsx")
@@ -13,66 +44,71 @@ export default function DonutChart() {
         const workbook = XLSX.read(buffer, { type: "array" });
         const sheet = workbook.Sheets[workbook.SheetNames[0]];
         const json = XLSX.utils.sheet_to_json(sheet);
-
-        const formatted = json.map((row) => ({
+        setChartData(json.map(row => ({
           name: row.name || row.Name,
-          value: Number(row.value || row.Value),
-        }));
-
-        const sum = formatted.reduce((a, b) => a + b.value, 0);
-
-        setChartData(formatted);
-        setTotal(sum);
+          value: Number(row.value || row.Value)
+        })));
       })
       .catch((err) => console.error("Excel load error:", err));
   }, []);
 
-  const COLORS = ["#6560ccff", "#82ca9d", "#ffc658", "#ff8042", "#8dd1e1"];
-
-  // ⭐ LABEL FORMATTER
-  const renderLabel = (entry) => {
-    const percent = ((entry.value / total) * 100).toFixed(1);
-    return `${entry.name}: ${percent}%`;
-  };
-
-  // ⭐ TOOLTIP FORMATTER
-  const tooltipFormatter = (value, name, props) => {
-    const percent = ((value / total) * 100).toFixed(1);
-    return [`${value} (${percent}%)`, name];
-  };
+  const COLORS = ["#38bdf8", "#818cf8", "#fbbf24", "#34d399", "#f87171"];
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
+  const RADIAN = Math.PI / 180;
+  // This determines how far from the center the labels are placed
+  const radius = outerRadius + 30; 
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <div style={{ padding: "10px", width: "100%", height: "100%", overflow: "visible" }}>
-      <h2 style={{ color: "#387fe9ff", marginBottom: "10px", textAlign: "center" }}>
-        Land Usage
-      </h2>
+    <text 
+      x={x} 
+      y={y} 
+      fill="#cbd5e1" // Soft blue-grey for readability
+      textAnchor={x > cx ? 'start' : 'end'} 
+      dominantBaseline="central"
+      fontSize="12px"
+      fontWeight="600"
+    >
+      {`${name} (${(percent * 100).toFixed(0)}%)`}
+    </text>
+  );
+};
+  return (
+    <div className="performance-container">
+      <div className="chart-header-glass">
+        <h2 className="chart-title-modern">Land Usage (km²)</h2>
+      </div>
 
-      {chartData.length > 0 ? (
-        <div style={{ width: "100%", height: "320px", overflow: "visible" }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={chartData}
-                dataKey="value"
-                nameKey="name"
-                innerRadius={70}
-                outerRadius={110}
-                paddingAngle={4}
-                label={renderLabel}   // ⭐ Custom label with percentage
-              >
-                {chartData.map((_, i) => (
-                  <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                ))}
-              </Pie>
-
-              <Tooltip formatter={tooltipFormatter} /> {/* ⭐ Custom tooltip */}
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      ) : (
-        <p style={{ color: "#ccc" }}>Loading data from Excel…</p>
-      )}
+      <div className="chart-wrapper">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={chartData}
+              cx="50%" cy="50%"
+              innerRadius="55%"  // Slightly smaller hole for balance
+              outerRadius="75%"  // Reduced to 75% to prevent labels from being cut off
+              paddingAngle={5}
+              dataKey="value"
+              onMouseEnter={(_, index) => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+              label={renderCustomizedLabel} // <--- Add this
+              labelLine={{ stroke: '#334155', strokeWidth: 1 }} // <--- Connector lines
+              stroke="none"
+            >
+              {chartData.map((entry, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip 
+              contentStyle={{ background: '#bad4fd', border: 'none', borderRadius: '8px', color: '#fff' }}
+            />
+            <Legend verticalAlign="bottom" height={36} />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

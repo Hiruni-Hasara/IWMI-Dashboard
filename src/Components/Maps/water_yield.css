@@ -1,67 +1,168 @@
-/* Dropdown Container Label */
-label {
-    font-size: 16px;
-    color: #e0e8ff;
-    margin-right: 8px;
+/* ============================================
+   WATER YIELD MAP — No Overlap, Vibrant Theme
+   ============================================ */
+
+.water-yield-wrapper {
+  position: relative;
+  width: 100%;
+  background: #080d1a;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(99, 210, 190, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column; /* Stack header ABOVE map */
 }
 
-/* Dropdown Select */
-select {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #2e3a5a;
-    background: #0b1220;
-    color: #a5c7ff;
-    font-size: 15px;
-    outline: none;
-    cursor: pointer;
-    transition: 0.25s ease;
-    box-shadow: 0 0 6px rgba(0, 150, 255, 0.2);
+/* ── HEADER (sits above the map, no overlap) ── */
+.map-overlay-header {
+  position: relative;         /* NOT absolute anymore */
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #0f1f3d 0%, #0d2137 100%);
+  padding: 14px 22px;
+  border-bottom: 1px solid rgba(99, 210, 190, 0.25);
+  flex-shrink: 0;
 }
 
-select:hover {
-    border-color: #4ea3ff;
-    box-shadow: 0 0 10px rgba(0, 150, 255, 0.4);
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-select:focus {
-    border-color: #4ea3ff;
-    box-shadow: 0 0 12px rgba(0, 150, 255, 0.6);
+.brand h1 {
+  font-size: 0.9rem;
+  color: #e2f4f0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 700;
 }
 
-.leaflet-tooltip {
-    background: rgba(15, 25, 45, 0.85);
-    border: 1px solid #4ea3ff;
-    color: #d6e6ff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 14px;
-    box-shadow: 0 0 12px rgba(78, 163, 255, 0.5);
-    backdrop-filter: blur(6px);
+.neon-icon {
+  color: #63d2be;
+  filter: drop-shadow(0 0 6px #63d2be88);
 }
 
-.leaflet-tooltip-left:before,
-.leaflet-tooltip-right:before {
-    border-right-color: #4ea3ff !important;
-    border-left-color: #4ea3ff !important;
+/* ── YEAR SELECTOR ── */
+.glass-select-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(99, 210, 190, 0.08);
+  padding: 7px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(99, 210, 190, 0.4);
+  transition: border-color 0.2s;
 }
 
-.leaflet-popup-content-wrapper {
-    background: #0c1625;
-    color: #d6e6ff;
-    border-radius: 10px;
-    border: 1px solid #4ea3ff;
-    box-shadow: 0 0 15px rgba(78, 163, 255, 0.6);
-    padding: 8px 12px;
+.glass-select-container:hover {
+  border-color: rgba(99, 210, 190, 0.8);
 }
 
-.leaflet-popup-content {
-    margin: 8px;
-    font-size: 15px;
-    color: #e4efff;
+.glass-select-container select {
+  background: transparent;
+  color: #e2f4f0;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
 
-.leaflet-popup-tip {
-    background: #0c1625;
-    border: 1px solid #4ea3ff;
+.glass-select-container select option {
+  background: #0f1f3d;
+  color: #e2f4f0;
+}
+
+/* ── MAP AREA fills remaining height ── */
+.dark-map {
+  flex: 1;
+  min-height: 480px;
+  width: 100%;
+  background: #050a14 !important;
+}
+
+/* Push Leaflet zoom controls down so they don't crowd the map top */
+.leaflet-top.leaflet-left {
+  top: 12px !important;
+}
+
+/* ── LEGEND — bottom-left, absolutely inside the map ── */
+.map-legend-neon {
+  position: absolute;
+  bottom: 24px;
+  left: 20px;
+  z-index: 1100;
+  pointer-events: none;
+  background: rgba(8, 13, 26, 0.88);
+  backdrop-filter: blur(10px);
+  padding: 14px 18px;
+  border-radius: 12px;
+  border-left: 3px solid #63d2be;
+  color: #e2f4f0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.map-legend-neon h3 {
+  margin: 0 0 10px 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #63d2be;
+}
+
+.leg-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  margin: 5px 0;
+  color: #cbd5e1;
+}
+
+.leg-row i {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border-radius: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ── TOOLTIP ── */
+.leaflet-tooltip-own {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.glass-tooltip {
+  background: rgba(8, 13, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 210, 190, 0.5);
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tt-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #63d2be;
+  font-weight: 600;
+}
+
+.tt-val {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
 }

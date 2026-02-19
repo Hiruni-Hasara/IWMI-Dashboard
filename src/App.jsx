@@ -1,14 +1,13 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// Components
 import Navbar from "./Components/Navbar/Navbar";
-import Hero from "./Components/Sections/Hero";
 import Contact from "./Components/Sections/Contact";
+import Dashboard from "./Components/Dashboard/Dashboard"; 
 import ShapefileMap from "./Components/Maps/ShapefileMap";
-import RastermapWY from "./Components/Maps/Rastermap-wy";
-import Wateravailablecharts from "./Components/Charts/wateravailablecharts";
 
-import "./Components/Sections/Sections.css";
-import "./Components/Animations/NatureAnimations.css";  // ← Add animation CSS here
+// Styles
 import "./index.css";
 import "leaflet/dist/leaflet.css";
 
@@ -16,26 +15,12 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-
       <Routes>
-        {/* ---------- HOME PAGE ----------- */}
-        <Route
-          path="/"
-          element={
-            <>
-              
-              <Hero />
-              <RastermapWY/>
-              
-              <Wateravailablecharts/>
-              <Contact />
-            </>
-          }
-        />
-
-        {/* ---------- SHAPEFILE MAP PAGE ---------- */}
+        <Route path="/" element={<Dashboard />} />
         <Route path="/shapefile" element={<ShapefileMap />} />
       </Routes>
+      {/* Contact is displayed at the bottom of all pages */}
+      <Contact />
     </BrowserRouter>
   );
 }

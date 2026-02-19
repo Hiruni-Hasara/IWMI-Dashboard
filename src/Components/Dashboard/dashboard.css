@@ -1,38 +1,124 @@
+/* --- PREVENT HORIZONTAL SCROLLING --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Fixes horizontal scroll at 100% zoom */
+}
+
 .dashboard-container {
-  padding: 30px;
-  margin-left: 230px;
+  background-color: #0b0f19;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  color: #e2e8f0;
+  box-sizing: border-box;
 }
 
-.cards-row {
+/* Taller Top Image Box */
+.dashboard-banner {
+  height: 500px; /* Increased Height */
+  background-size: cover;
+  background-position: center;
   display: flex;
-  gap: 20px;
+  align-items: flex-end;
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 4px solid #0ea5e9;
 }
 
-.card {
-  flex: 1;
-  background: #222;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-  text-align: center;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-}
-
-.dashboard-content {
+/* Grid Wrapper with 45/55 Split */
+.dashboard-main-wrapper {
   display: flex;
-  gap: 25px;
-  margin-top: 30px;
-}
-
-.chart-box,
-.map-box {
-  flex: 1;
-  background: #222;
+  width: 100%;
   padding: 20px;
-  border-radius: 12px;
+  gap: 20px;
+  box-sizing: border-box; /* Crucial to prevent width overflow */
 }
+
+.left-column {
+  flex: 0 0 45%; /* Adjusts for gap */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.right-column {
+  flex: 1; /* Adjusts for gap */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* --- BOX HEIGHTS --- */
+.description-tile { height: 300px; }
+.map-tile         { height: 700px; }
+.performance-tile { height: 680px; }
+
+.year-container-tile { 
+  height: 80px; 
+  background: white !important; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.six-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.feature-card {
+  background: #1e293b;
+  border: 1px dashed #38bdf8;
+  border-radius: 12px;
+  height: 300px; /* Tall small cards as requested */
+}
+
+.balance-tile { height: 600px; }
+.yield-tile   { height: 605px; }
+
+/* --- TILE INTERNALS --- */
+.tile {
+  background: #161e2d;
+  border: 1px solid #2d3748;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.horizontal-years {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.year-text-btn {
+  background: none;
+  border: none;
+  color: #0b0f19;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* Add to dashboard.css */
+.year-text-btn {
+  padding: 5px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.active-year {
+  background-color: #0ea5e9 !important; /* Blue background for active year */
+  color: white !important;
+  transform: scale(1.1);
+}
+

@@ -1,55 +1,112 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import L from "leaflet";
 import shp from "shpjs";
 import "leaflet/dist/leaflet.css";
 import "./BasinMap.css";
 
 export default function BasinMap() {
-  const [geojson, setGeojson] = useState(null);
+  const [basinData, setBasinData] = useState(null);
+  const [networkData, setNetworkData] = useState(null);
   const mapRef = useRef(null);
 
+  // High-end color palette
+  const colors = {
+    boundary: "#2563eb",      // Deep Blue
+    boundaryFill: "#3b82f6",  // Blue fill
+    highlight: "#00f2ff",     // Neon Cyan
+    network: "#0ea5e9"        // Electric Sky Blue
+  };
+
   useEffect(() => {
-    shp("/shapefiles/AZ_Basin.zip")
-      .then((data) => setGeojson(data))
-      .catch((err) => console.error("Shapefile loading error:", err));
+    Promise.all([
+      shp("/shapefiles/AZ_Basin.zip"),
+      shp("/shapefiles/AZ_Basin_network.zip")
+    ])
+      .then(([basin, network]) => {
+        setBasinData(basin);
+        setNetworkData(network);
+      })
+      .catch((err) => console.error("Loading error:", err));
   }, []);
 
-  // Auto-zoom when geojson loads
   useEffect(() => {
-    if (geojson && mapRef.current) {
-      const layer = L.geoJSON(geojson);
-      mapRef.current.fitBounds(layer.getBounds());
+    if (basinData && mapRef.current) {
+      const layer = L.geoJSON(basinData);
+      mapRef.current.fitBounds(layer.getBounds(), { padding: [10, 10] });
     }
-  }, [geojson]);
+  }, [basinData]);
 
-  return (
-    <div className="basin-map-container">
-      <h3 className="map-title">
-        <span> River Basin </span>
-      </h3>
+  const onEachBasin = (feature, layer) => {
+    layer.on({
+      mouseover: (e) => {
+        const target = e.target;
+        target.setStyle({
+          weight: 5,
+          color: colors.highlight,
+          fillOpacity: 0.4,
+        });
+        target.bringToBack(); // Ensures network stays visible on top
+      },
+      mouseout: (e) => {
+        e.target.setStyle({
+          weight: 3,
+          color: colors.boundary,
+          fillOpacity: 0.25,
+        });
+      }
+    });
+  };
 
-      <MapContainer
-        ref={mapRef}
-        center={[0, 0]} // placeholder, overridden by fitBounds
-        zoom={5}
-        scrollWheelZoom={true}
-        style={{ height: "100%", width: "100%" }}
-      >
+ return (
+  <div className="map-tile-inner-wrapper">
+    {/* --- Interactive Floating Title --- */}
+    <div className="map-header-glass">
+      <div className="accent-line"></div>
+      <div className="title-stack">
+        <h4 className="main-map-title">Amman–Zarqa Basin Network</h4>
+        <div className="status-indicator">
+          <span className="dot"></span>
+          <span className="status-text">Interactive Map</span>
+        </div>
+      </div>
+    </div>
+
+    <MapContainer
+      ref={mapRef}
+      center={[32.1, 36.1]}
+      zoom={9}
+      scrollWheelZoom={false}
+      zoomControl={true}
+      className="fill-container-map"
+    >
         <TileLayer
-  url="https://tiles.stadiamaps.com/tiles/hillshade/{z}/{x}/{y}.png"
-  opacity={0.6}
-/>
-<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+        />
 
-        {geojson && (
-          <GeoJSON
-            data={geojson}
+        {basinData && (
+          <GeoJSON 
+            data={basinData} 
+            onEachFeature={onEachBasin}
             style={{
-              color: "#0057ff",
+              color: colors.boundary,
               weight: 3,
-              fillColor: "#4da6ff",
-              fillOpacity: 0.35,
-            }}
+              fillColor: colors.boundaryFill,
+              fillOpacity: 0.25,
+            }} 
+          />
+        )}
+        
+        {networkData && (
+          <GeoJSON 
+            data={networkData} 
+            interactive={false} // Prevents network from stealing hover from boundary
+            style={{
+              color: colors.network,
+              weight: 1.8,
+              opacity: 0.9
+            }} 
           />
         )}
       </MapContainer>

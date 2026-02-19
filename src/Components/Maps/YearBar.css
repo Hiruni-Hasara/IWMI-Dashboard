@@ -1,0 +1,74 @@
+.year-bar-container {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 15px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.year-bar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.year-icon {
+  color: #00d4ff;
+  filter: drop-shadow(0 0 5px #00d4ff);
+}
+
+.year-label {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.year-track {
+  display: flex;
+  justify-content: space-between; /* This fits the years to the layout width */
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 15px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.year-item {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.year-item:hover {
+  color: #00d4ff;
+}
+
+.year-item.active {
+  color: #ffffff;
+}
+
+.active-glow-dot {
+  width: 6px;
+  height: 6px;
+  background: #00d4ff;
+  border-radius: 50%;
+  margin-top: 4px;
+  box-shadow: 0 0 12px #00d4ff, 0 0 20px #00d4ff;
+  /* Visual cue matching image_ae327b.png neon style */
+}

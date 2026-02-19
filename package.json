@@ -19,6 +19,7 @@
     "geotiff": "^2.1.4-beta.1",
     "leaflet": "^1.9.4",
     "leaflet-geotiff": "^0.2.0",
+    "lucide-react": "^0.574.0",
     "plotty": "^0.4.9",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
