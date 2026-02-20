@@ -1,0 +1,49 @@
+/* Donut Chart Container */
+.donut-chart-box {
+  padding: 20px;
+  text-align: center;
+  color: #e8f1ff;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+/* Donut Title Styling */
+.donut-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #60a5ff, #33eaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Chart wrapper to force perfect shape */
+.donut-chart-wrapper {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  overflow: visible !important;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.12);
+  transition: 0.3s ease-in-out;
+}
+
+/* Hover Glow */
+.donut-chart-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 200, 255, 0.25);
+}
+
+/* Fade-in animation (same as your year-section) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

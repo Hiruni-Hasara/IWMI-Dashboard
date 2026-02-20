@@ -16,17 +16,7 @@ html, body {
 }
 
 /* Taller Top Image Box */
-.dashboard-banner {
-  height: 500px; /* Increased Height */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-  padding: 40px;
-  width: 100%;
-  box-sizing: border-box;
-  border-bottom: 4px solid #0ea5e9;
-}
+
 
 /* Grid Wrapper with 45/55 Split */
 .dashboard-main-wrapper {
@@ -122,3 +112,101 @@ html, body {
   transform: scale(1.1);
 }
 
+/*new*/
+/* --- Banner Styles --- */
+.dashboard-banner {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  border-bottom: 4px solid #0ea5e9;
+  
+}
+
+
+.banner-glass-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.4); /* Dark translucent background */
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 550px;
+}
+
+.main-banner-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.highlight-text {
+  display: block;
+  color: #00d4ff; /* Electric Cyan matching map legend */
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.banner-divider {
+  width: 60px;
+  height: 4px;
+  background: #00d4ff;
+  margin: 20px 0;
+  border-radius: 2px;
+}
+
+.banner-location {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.banner-stats-mini {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.mini-stat {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 30px;
+}
+
+.stat-dot {
+  width: 6px; height: 6px;
+  background: #475569;
+  border-radius: 50%;
+}
+
+.stat-dot.active {
+  background: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff;
+}
+
+.banner-logo-container {
+  position: absolute;
+  bottom: 25px;
+  right: 35px;
+  color: white;
+  opacity: 0.8;
+  font-weight: 700;
+}

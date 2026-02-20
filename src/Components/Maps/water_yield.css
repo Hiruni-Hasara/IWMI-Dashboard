@@ -97,7 +97,7 @@
   position: absolute;
   bottom: 24px;
   left: 20px;
-  z-index: 1100;
+  z-index: 900;
   pointer-events: none;
   background: rgba(8, 13, 26, 0.88);
   backdrop-filter: blur(10px);

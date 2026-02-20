@@ -1,37 +1,73 @@
 .navbar {
   position: fixed;
-  top: 0;
-  width: 97%;
-  height: 70px;
-  background: #2d6fa5;
+  top: 15px; /* Floating away from the top edge */
+  left: 67%;
+  transform: translateX(-50%); /* Perfectly centered */
+  width: 60%;
+  height: 65px;
+  background: rgba(15, 23, 42, 0.7); /* Deep slate glass */
+  backdrop-filter: blur(12px); /* Blurred background effect */
+  border: 1px solid rgb(255, 255, 255); /* Subtle border */
+  border-radius: 50px; /* Modern pill shape */
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  padding: 0 35px;
+  z-index: 1200;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: rgb(253, 253, 253);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: #00d4ff; /* Neon cyan accent */
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 40px;
 }
 
 .nav-links li a {
-  color: #eee;
+  position: relative;
+  color: #94a3b8; /* Muted slate for inactive links */
   text-decoration: none;
-  font-size: 16px;
-  transition: 0.2s;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  transition: all 0.3s ease;
 }
 
+/* Hover State */
 .nav-links li a:hover {
-  color: cyan;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Modern Animated Underline */
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #00d4ff; /* Matches Water Yield Neon Cyan */
+  box-shadow: 0 0 10px #00d4ff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links li a:hover::after {
+  width: 20px; /* Small, elegant underline dash */
 }
