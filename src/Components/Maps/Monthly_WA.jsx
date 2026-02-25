@@ -13,11 +13,11 @@ const DATASETS = {
     unit: "mm",
     accent: "#60a5fa",
     getColor: (v) => {
-      if (v > 15) return "#9ad1f7"; // High
-      if (v > 9)  return "#1574a0";
-      if (v > 7)  return "#46a3e0";
-      if (v > 5)  return "#0a85cc";
-      if (v > 2)  return "#194bf1";
+      if (v > 50) return "#9ad1f7"; // High
+      if (v > 40)  return "#1574a0";
+      if (v > 30)  return "#46a3e0";
+      if (v > 20)  return "#0a85cc";
+      if (v > 10)  return "#194bf1";
       if (v > 0)  return "#3579f8"; // Low
       return "#9bbdfd";
     },

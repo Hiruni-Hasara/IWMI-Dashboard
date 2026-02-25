@@ -271,7 +271,7 @@ html, body {
   color: #94a3b8;
   margin-top: 0.5rem;
   font-weight: 400;
-}
+} 
 
 /* Animation for the chart container */
 .full-width-chart-tile {
@@ -282,4 +282,48 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Specific Blue Variation for Water Availability */
+.blue-line {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+.full-width-chart-tile {
+  width: 100%;
+  min-height: 450px;
+  background: rgba(2, 6, 23, 0.2);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+/* Specific styling for the right-aligned 55% section */
+.right-aligned-section {
+  width: 55% !important;   /* Occupy 55% of screen width */
+  margin-left: auto !important; /* Push to the far right */
+  margin-right: 0 !important;
+  align-items: flex-start !important; /* Align text/header to the left of this box */
+  text-align: left !important;
+  padding: 2.5rem !important;
+}
+
+/* Center the header line within the left-aligned text if desired, 
+   or keep it left-aligned to match the new layout */
+.right-aligned-section .header-line {
+  margin-left: 0 !important; 
+}
+
+/* Increase the height of the chart tile */
+.tall-chart {
+  min-height: 650px !important; /* Increased height */
+  width: 100%;
+}
+
+/* Ensure the chart inside scales to the new height */
+.tall-chart > div {
+  height: 100%;
+  width: 100%;
 }

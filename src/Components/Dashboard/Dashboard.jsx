@@ -9,8 +9,10 @@ import Waterbalance from "../Sections/Waterbalance";
 import WaterYield from "../Maps/water_yield";
 import BasinInsights from "../Sections/BasinInsights";
 import YearBar from "../Maps/YearBar";
-import MonthlyExplorerMap from "../Maps/Monthly_WA"; // The new Monthly Map
-import SunburstWaterBalance from "../Charts/SunburstWaterBalance"; // New Import
+import MonthlyExplorerMap from "../Maps/Monthly_WA"; 
+import SunburstWaterBalance from "../Charts/SunburstWaterBalance"; 
+import BarCharts_waterAvailability from "../Charts/BarCharts_waterAvailability"; // Fixed import path
+
 // Assets
 import HeroImage from "../../assets/Hero2.jpg";
 
@@ -55,21 +57,17 @@ const Dashboard = () => {
       </div>
 
       <div className="dashboard-main-wrapper">
-        
-        {/* ── LEFT COLUMN: Static Context ── */}
         <div className="left-column">
           <div className="tile description-tile">
             <div className="tile-content scrollable">
               <About />
             </div>
           </div>
-
           <div className="tile map-tile">
             <div className="tile-content no-padding">
               <BasinMap />
             </div>
           </div>
-
           <div className="tile performance-tile">
             <div className="tile-content center-content">
               <Donutchart />
@@ -77,22 +75,18 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* ── RIGHT COLUMN: Dynamic Data ── */}
         <div className="right-column">
           <YearBar 
             years={years} 
             selectedYear={selectedYear} 
             onYearChange={setSelectedYear} 
           />
-
           <BasinInsights selectedYear={selectedYear} />
-
           <div className="tile balance-tile">
             <div className="tile-content">
               <Waterbalance selectedYear={selectedYear} />
             </div>
           </div>
-
           <div className="tile yield-tile">
             <div className="tile-content">
               <WaterYield selectedYear={selectedYear} />
@@ -100,28 +94,41 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+            {/* ── NEW SECTION: WATER AVAILABILITY BAR CHART ── */}
+      <div className="dashboard-bottom-section right-aligned-section">
+        <div className="section-header">
+          <div className="header-line blue-line"></div>
+          <h2 className="section-title">Amman-Zarqa Basin Water Availability</h2>
+          <p className="section-subtitle">
+            Annual water resource availability and trends for <span className="year-badge">{selectedYear}</span>
+          </p>
+        </div>
+        <div className="full-width-chart-tile tall-chart">
+          <BarCharts_waterAvailability selectedYear={selectedYear} />
+        </div>
+      </div>
+
       {/* ── SECTION: HIERARCHICAL WATER BALANCE (Sunburst) ── */}
       <div className="dashboard-bottom-section sunburst-bg">
         <div className="section-header">
           <div className="header-line purple-line"></div>
           <h2 className="section-title">Amman-Zarqa Basin Water Balance (km³/yr)</h2>
-          <p className="section-subtitle">Categorized inflow and outflow distribution for {selectedYear}</p>
+          <p className="section-subtitle">Categorized inflow and outflow distribution for <span className="year-badge">{selectedYear}</span></p>
         </div>
         <div className="full-width-chart-tile">
           <SunburstWaterBalance selectedYear={selectedYear} />
         </div>
       </div>
 
-      {/* ── NEW FULL-WIDTH SECTION: Dedicated Spatial Analysis ── */}
+      {/* ── SECTION: SPATIAL ANALYSIS (Monthly Explorer) ── */}
       <div className="dashboard-bottom-section">
         <div className="section-header">
           <div className="header-line"></div>
-          <h2 className="section-title">Amman-Zarqa Basin Water Availability</h2>
-          <p className="section-subtitle">Monthly variations across the Amman Zarqa Basin</p>
+          <h2 className="section-title">Spatial Water Variations</h2>
+          <p className="section-subtitle">Detailed monthly variations across the Amman Zarqa Basin</p>
         </div>
-        
         <div className="full-width-explorer-tile">
-          {/* This component gets its own internal month state but uses Dashboard's year */}
           <MonthlyExplorerMap selectedYear={selectedYear} />
         </div>
       </div>
