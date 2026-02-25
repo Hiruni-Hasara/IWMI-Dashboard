@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+.explorer-root {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: #03060f;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+}
+
+/* ============================================================
+   SIDEBAR — wide and spacious
+   ============================================================ */
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  background: #060b1a;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  flex-shrink: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.05) transparent;
+}
+.sidebar::-webkit-scrollbar { width: 2px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); }
+
+/* Brand */
+.sb-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 22px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0;
+}
+
+.sb-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.sb-sub {
+  font-size: 0.7rem;
+  color: #334155;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 3px;
+}
+
+/* Blocks */
+.sb-block {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sb-block-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #334155;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.04);
+  margin: 0 18px;
+  flex-shrink: 0;
+}
+
+/* ── DATASET BUTTONS ── */
+.ds-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #475569;
+  padding: 13px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.18s;
+  text-align: left;
+}
+.ds-btn:hover {
+  background: rgba(255,255,255,0.05);
+  color: #94a3b8;
+  border-color: rgba(255,255,255,0.1);
+}
+.ds-btn--on {
+  background: color-mix(in srgb, var(--a, #38bdf8) 10%, transparent) !important;
+  border-color: color-mix(in srgb, var(--a, #38bdf8) 40%, transparent) !important;
+  color: var(--a, #38bdf8) !important;
+}
+
+.ds-emoji { font-size: 1.2rem; flex-shrink: 0; }
+.ds-label { flex: 1; }
+.ds-pip {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── YEAR GRID ── */
+.yr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.yr-btn {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #475569;
+  padding: 10px 4px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.15s;
+  text-align: center;
+}
+.yr-btn:hover {
+  color: #94a3b8;
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.1);
+}
+.yr-btn--on {
+  font-weight: 700;
+}
+
+/* ── MONTH ── */
+.month-hero {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.month-arrow {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.month-arrow:hover {
+  color: #f1f5f9;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.month-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.month-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.month-yr {
+  font-size: 0.68rem;
+  color: #334155;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 4px;
+}
+
+/* Month chip grid */
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.month-chip {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  color: #475569;
+  padding: 9px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.15s;
+  text-align: center;
+}
+.month-chip:hover {
+  color: #94a3b8;
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+.month-chip--on {
+  font-weight: 700;
+}
+
+/* ── LEGEND ── */
+.legend-bar {
+  height: 10px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.legend-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #334155;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 2px;
+}
+
+.legend-unit {
+  font-size: 0.6rem;
+  color: #1e293b;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: right;
+}
+
+/* ── LIVE READOUT ── */
+.readout {
+  margin: 0 22px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 14px 18px;
+  animation: popIn 0.15s ease;
+  flex-shrink: 0;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.readout-name {
+  font-size: 0.72rem;
+  color: #475569;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.readout-val {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.readout-val span {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* ============================================================
+   MAP
+   ============================================================ */
+.map-wrap {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+}
+
+.the-map {
+  width: 100%;
+  height: 100%;
+  background: #03060f !important;
+}
+
+.leaflet-top.leaflet-left { top: 54px !important; }
+
+/* Floating chips */
+.map-chips {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.map-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(3,6,15,0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.map-chip--load {
+  color: #94a3b8;
+  border-color: rgba(255,255,255,0.12);
+}
+
+.spin {
+  width: 9px; height: 9px;
+  border: 1.5px solid rgba(148,163,184,0.25);
+  border-top-color: #94a3b8;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   TOOLTIP
+   ============================================================ */
+.clean-tip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.map-tooltip {
+  background: rgba(3, 6, 15, 0.95);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-family: 'Outfit', sans-serif;
+  min-width: 120px;
+  backdrop-filter: blur(12px);
+}
+
+.tt-basin {
+  font-size: 0.72rem;
+  color: #475569;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.tt-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  line-height: 1;
+}
+
+.tt-value span {
+  font-size: 0.75rem;
+  color: #475569;
+  font-weight: 400;
+  margin-left: 3px;
+}

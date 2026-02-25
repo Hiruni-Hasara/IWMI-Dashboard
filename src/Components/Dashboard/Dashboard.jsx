@@ -9,7 +9,8 @@ import Waterbalance from "../Sections/Waterbalance";
 import WaterYield from "../Maps/water_yield";
 import BasinInsights from "../Sections/BasinInsights";
 import YearBar from "../Maps/YearBar";
-
+import MonthlyExplorerMap from "../Maps/Monthly_WA"; // The new Monthly Map
+import SunburstWaterBalance from "../Charts/SunburstWaterBalance"; // New Import
 // Assets
 import HeroImage from "../../assets/Hero2.jpg";
 
@@ -48,9 +49,7 @@ const Dashboard = () => {
           </div>
         </div>
         
-        {/* Brand Logo Corner */}
         <div className="banner-logo-container">
-           {/* Replace with your actual logo path */}
            <div className="iwmi-logo-placeholder">IWMI | Water Management Institute</div>
         </div>
       </div>
@@ -99,6 +98,31 @@ const Dashboard = () => {
               <WaterYield selectedYear={selectedYear} />
             </div>
           </div>
+        </div>
+      </div>
+      {/* ── SECTION: HIERARCHICAL WATER BALANCE (Sunburst) ── */}
+      <div className="dashboard-bottom-section sunburst-bg">
+        <div className="section-header">
+          <div className="header-line purple-line"></div>
+          <h2 className="section-title">Amman-Zarqa Basin Water Balance (km³/yr)</h2>
+          <p className="section-subtitle">Categorized inflow and outflow distribution for {selectedYear}</p>
+        </div>
+        <div className="full-width-chart-tile">
+          <SunburstWaterBalance selectedYear={selectedYear} />
+        </div>
+      </div>
+
+      {/* ── NEW FULL-WIDTH SECTION: Dedicated Spatial Analysis ── */}
+      <div className="dashboard-bottom-section">
+        <div className="section-header">
+          <div className="header-line"></div>
+          <h2 className="section-title">Amman-Zarqa Basin Water Availability</h2>
+          <p className="section-subtitle">Monthly variations across the Amman Zarqa Basin</p>
+        </div>
+        
+        <div className="full-width-explorer-tile">
+          {/* This component gets its own internal month state but uses Dashboard's year */}
+          <MonthlyExplorerMap selectedYear={selectedYear} />
         </div>
       </div>
     </div>

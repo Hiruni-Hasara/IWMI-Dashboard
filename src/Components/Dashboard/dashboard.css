@@ -209,4 +209,77 @@ html, body {
   color: white;
   opacity: 0.8;
   font-weight: 700;
+
+}
+
+/* Container for the overall section */
+.dashboard-bottom-section {
+  background: rgba(15, 23, 42, 0.6); /* Deep slate with transparency */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-bottom-section:hover {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(56, 189, 248, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Header Container */
+.section-header {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* The Line Above the Title */
+.header-line {
+  height: 4px;
+  width: 60px;
+  background: #38bdf8; /* Default Blue */
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+/* Specific Purple Variation for Sunburst */
+.purple-line {
+  background: #a855f7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.dashboard-bottom-section:hover .header-line {
+  width: 120px; /* Expands on hover */
+}
+
+/* Title Styling */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Subtitle Styling */
+.section-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+/* Animation for the chart container */
+.full-width-chart-tile {
+  background: rgba(2, 6, 23, 0.4);
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

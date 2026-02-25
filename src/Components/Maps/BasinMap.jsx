@@ -21,7 +21,7 @@ export default function BasinMap() {
   useEffect(() => {
     Promise.all([
       shp("/shapefiles/AZ_Basin.zip"),
-      shp("/shapefiles/AZ_Basin_network.zip")
+      shp("/shapefiles/AZ_basin_network.zip")
     ])
       .then(([basin, network]) => {
         setBasinData(basin);
