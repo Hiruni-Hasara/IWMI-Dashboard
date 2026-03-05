@@ -438,7 +438,7 @@ export default function WaterSunburst() {
   return (
     <div style={{
       fontFamily:"'SF Pro Display','Segoe UI Variable','Segoe UI',sans-serif",
-      width: 720, margin:"0 auto",
+      width: 2000, margin:"0 auto",
       background:"linear-gradient(135deg,rgba(15,23,42,0.95) 0%,rgba(15,23,42,0.85) 100%)",
       borderRadius: 20,
       border:"1px solid rgba(99,102,241,0.15)",

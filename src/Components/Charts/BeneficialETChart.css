@@ -1,0 +1,108 @@
+.bet-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.bet-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+  border: 1px solid transparent;
+  border-radius: 16px;
+  padding: 20px 16px 12px;
+  backdrop-filter: blur(16px);
+  transition: box-shadow 0.3s;
+  font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+}
+
+.bet-card:hover {
+  box-shadow: 0 0 40px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.bet-card-accent {
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 80px;
+  border-radius: 0 16px 0 0;
+  pointer-events: none;
+}
+
+.bet-card-header {
+  margin-bottom: 4px;
+}
+
+.bet-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.bet-card-desc {
+  font-size: 10px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.bet-stats-row {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0 10px;
+}
+
+.bet-stat-label {
+  font-size: 9px;
+  color: #b7bdc5;
+  letter-spacing: 0.08em;
+}
+
+.bet-stat-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.bet-stat-unit {
+  font-size: 9px;
+  color: #475569;
+  margin-left: 2px;
+}
+
+.bet-tooltip {
+  background: rgba(15,23,42,0.92);
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px 16px;
+  backdrop-filter: blur(12px);
+  font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+}
+
+.bet-tooltip-year {
+  font-size: 11px;
+  color: #e0e0e0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.bet-tooltip-value {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bet-tooltip-unit {
+  font-size: 11px;
+  color: #d3d5d8;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+@media (max-width: 640px) {
+  .bet-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

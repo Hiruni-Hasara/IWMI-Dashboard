@@ -11,8 +11,13 @@ import BasinInsights from "../Sections/BasinInsights";
 import YearBar from "../Maps/YearBar";
 import MonthlyExplorerMap from "../Maps/Monthly_WA"; 
 import SunburstWaterBalance from "../Charts/SunburstWaterBalance"; 
-import BarCharts_waterAvailability from "../Charts/BarCharts_waterAvailability"; // Fixed import path
+ // Fixed import path
+import BeneficialETChart from "../Charts/BeneficialETChart";
+import BasinClosureChart  from "../Charts/BasinClosureChart";
+import FutureWaterAvailabilityChart from "../Charts/FutureWaterAvailabilityChart";
+import NonConventionalRadialChart  from "../Charts/NonConventionalRadialChart";
 
+import WaterAvailabilityHeatmap from "../Charts/WaterAvailabilityHeatmap";
 // Assets
 import HeroImage from "../../assets/Hero2.jpg";
 
@@ -95,20 +100,77 @@ const Dashboard = () => {
         </div>
       </div>
 
-            {/* ── NEW SECTION: WATER AVAILABILITY BAR CHART ── */}
-      <div className="dashboard-bottom-section right-aligned-section">
-        <div className="section-header">
-          <div className="header-line blue-line"></div>
-          <h2 className="section-title">Amman-Zarqa Basin Water Availability</h2>
-          <p className="section-subtitle">
-            Annual water resource availability and trends for <span className="year-badge">{selectedYear}</span>
-          </p>
-        </div>
-        <div className="full-width-chart-tile tall-chart">
-          <BarCharts_waterAvailability selectedYear={selectedYear} />
-        </div>
-      </div>
+    
+      
 
+{/* ── SECTION: WATER PERFORMANCE INDICATORS ── */}
+<div style={{
+  width: "100%",
+  boxSizing: "border-box",
+  background: "linear-gradient(135deg,#060d1a 0%,#0a1628 50%,#060d1a 100%)",
+  borderTop: "1px solid rgba(45,212,191,0.1)",
+  borderBottom: "1px solid rgba(45,212,191,0.1)",
+  padding: "32px 24px 32px",
+}}>
+  {/* Section Header */}
+  <div style={{ marginBottom: 24 }}>
+    <div style={{
+      width: 60, height: 3, borderRadius: 2,
+      background: "linear-gradient(90deg,#2dd4bf,transparent)",
+      marginBottom: 12,
+    }}/>
+    <h2 style={{
+      fontSize: 28, fontWeight: 700, letterSpacing: "-0.02em",
+      background: "linear-gradient(90deg,#2dd4bf,#60a5fa,#c084fc)",
+      WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+      margin: "0 0 8px",
+    }}>
+      Water Performance Indicators
+    </h2>
+    
+  </div>
+
+  {/* ── Main Grid ── */}
+  <div style={{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "auto auto auto",
+    gap: 16,
+    width: "100%",
+    boxSizing: "border-box",
+  }}>
+
+    {/* LEFT col rows 1-2: Heatmap placeholder */}
+    <div style={{
+  gridColumn: "1/2",
+  gridRow: "1/3",
+  minWidth: 0,
+  overflow: "hidden",
+}}>
+  <WaterAvailabilityHeatmap />
+</div>
+    {/* RIGHT col row 1: Non-Conventional Radial */}
+    <div style={{ gridColumn: "2/3", gridRow: "1/2", minWidth: 0 }}>
+      <NonConventionalRadialChart />
+    </div>
+
+    {/* RIGHT col row 2: ET pair */}
+    <div style={{ gridColumn: "2/3", gridRow: "2/3", minWidth: 0 }}>
+      <BeneficialETChart />
+    </div>
+
+    {/* LEFT col row 3: Basin Closure */}
+    <div style={{ gridColumn: "1/2", gridRow: "3/4", minWidth: 0 }}>
+      <BasinClosureChart />
+    </div>
+
+    {/* RIGHT col row 3: Future Water Availability */}
+    <div style={{ gridColumn: "2/3", gridRow: "3/4", minWidth: 0 }}>
+      <FutureWaterAvailabilityChart />
+    </div>
+
+  </div>
+</div>
       {/* ── SECTION: HIERARCHICAL WATER BALANCE (Sunburst) ── */}
       <div className="dashboard-bottom-section sunburst-bg">
         <div className="section-header">
